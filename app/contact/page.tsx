@@ -1,0 +1,16 @@
+import Link from "next/link";
+
+export default function ContactPage() {
+    return (
+        <main className="flex flex-col items-center justify-center h-screen">
+            <h1 className="text-3xl font-bold">Contact Page</h1>
+            <p className="mt-2 text-gray-600">You can contact us here.</p>
+            <Link
+                href="/"
+                className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600"
+            >
+                Go back to HomePage
+            </Link>
+        </main>
+    );
+}
