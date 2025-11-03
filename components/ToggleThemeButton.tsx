@@ -37,9 +37,35 @@ export default function ToggleThemeButton({
     return (
         <button
             onClick={handleClick}
-            className={`${base} ${styles}`}
+            aria-label="Toggle Dark Mode"
+            className="
+        relative w-14 h-7 rounded-full flex items-center
+        transition border border-gray-400 dark:border-gray-600
+      "
         >
-            {isDark ? "🌙 Dark Mode" : "☀️ Light Mode"}
+            {/* Track */}
+            <div
+                className="
+          absolute inset-0 rounded-full
+          bg-gray-300 dark:bg-gray-800
+          transition
+        "
+            />
+
+            {/* Thumb */}
+            <div
+                className={`
+          h-6 w-6 rounded-full bg-white dark:bg-black border border-gray-500
+          transition-all duration-300
+          translate-x-1
+          ${isDark ? "translate-x-7" : ""}
+        `}
+            />
+
+            {/* Sun / Moon */}
+            <span className="absolute left-1 text-xs">☀️</span>
+            <span className="absolute right-1 text-xs">🌙</span>
         </button>
     );
+
 }

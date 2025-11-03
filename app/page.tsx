@@ -9,7 +9,7 @@ export default function Page() {
       <Counter />
       <Timer />
       <ScreenInfo />
-      <ToggleThemeButton />
+      {/* <ToggleThemeButton /> */}
     </main>
   );
 }
