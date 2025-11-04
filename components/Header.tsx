@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "./Navbar";
-import ToggleThemeButton from "./ToggleThemeButton";
+import ToggleThemeButton from "./buttons/ToggleThemeButton";
 
 export default function Header() {
     return (

@@ -2,13 +2,15 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ReactNode } from "react";
+import { Toaster } from "sonner";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" >
-      <body className="bg-white dark:bg-black text-black dark:text-white">
+    <html>
+      <body>
         <Header />
-        <main className="container mx-auto px-4 py-8">{children}</main>
+        {children}
+        <Toaster richColors closeButton />
         <Footer />
       </body>
     </html>
