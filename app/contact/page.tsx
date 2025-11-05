@@ -44,7 +44,7 @@ export default function ContactPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="grid grid-flow-row justify-items-center-safe gap-4 max-w-lg mx-auto p-6">
       <input name="name" placeholder="Your name" className="w-full border p-3 rounded" required />
       <input name="email" type="email" placeholder="Your email" className="w-full border p-3 rounded" required />
       <textarea name="message" placeholder="Message..." className="w-full border p-3 rounded h-32" required />
