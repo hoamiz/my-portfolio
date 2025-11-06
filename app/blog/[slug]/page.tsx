@@ -1,28 +1,44 @@
-import { posts } from "@/content/posts";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
+// Generate static routes
 export function generateStaticParams() {
-    return posts.map((post) => ({
-        slug: post.slug,
+    const dir = path.join(process.cwd(), "content/blog");
+    const files = fs.readdirSync(dir);
+
+    return files.map((file) => ({
+        slug: file.replace(/\.mdx$/, "")
     }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-    const post = posts.find((p) => p.slug === params.slug);
+// Generate SEO from MDX frontmatter
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+    const filePath = path.join(process.cwd(), "content/blog", `${params.slug}.mdx`);
+    if (!fs.existsSync(filePath)) return {};
 
-    if (!post) return notFound();
+    const { data } = matter(fs.readFileSync(filePath, "utf-8"));
+    return {
+        title: data.title,
+        description: data.description || data.excerpt
+    };
+}
+
+export default function BlogPost({ params }: { params: { slug: string } }) {
+    const filePath = path.join(process.cwd(), "content/blog", `${params.slug}.mdx`);
+
+    if (!fs.existsSync(filePath)) return notFound();
+
+    const fileContent = fs.readFileSync(filePath, "utf-8");
+    const { content, data } = matter(fileContent);
 
     return (
-        <div className="container mx-auto py-10">
-            <h1 className="text-3xl font-bold">{post.title}</h1>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                {post.date}
-            </p>
-
-            <article className="prose dark:prose-invert max-w-none">
-                <p>✨ Đây là nội dung tạm của bài viết &quot;{post.title}&quot;.</p>
-                <p>Nội dung markdown thật sẽ được parse ngày mai.</p>
-            </article>
-        </div>
+        <article className="prose dark:prose-invert max-w-3xl mx-auto py-10">
+            <h1>{data.title}</h1>
+            <p className="text-sm text-gray-500 mb-6">{data.date}</p>
+            <div>{content}</div>
+        </article>
     );
 }

@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import EmailTemplate from "@/components/EmailTemplate";
 
-console.log("RESEND_API_KEY loaded?", process.env.RESEND_API_KEY);
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
