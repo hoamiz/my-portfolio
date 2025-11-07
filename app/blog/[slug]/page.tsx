@@ -22,7 +22,17 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     const { data } = matter(fs.readFileSync(filePath, "utf-8"));
     return {
         title: data.title,
-        description: data.description || data.excerpt
+        description: data.description,
+        openGraph: {
+            title: data.title,
+            description: data.description || data.excerpt,
+            images: data.coverImage ? [data.coverImage] : ["/og-image.png"],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: data.title,
+            description: data.description || data.excerpt,
+        },
     };
 }
 

@@ -1,15 +1,9 @@
-import createMDX from "@next/mdx";
+// import mdx from "@next/mdx";
 
-const withMDX = createMDX({
-  extension: /\.mdx?$/
-});
+// const withMDX = mdx({
+//   extension: /\.mdx?$/,
+// });
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  pageExtensions: ["ts", "tsx", "mdx"],
-  experimental: {
-    mdxRs: true, // bật MDX runtime mới
-  }
-};
-
-export default withMDX(nextConfig);
+// export default withMDX({
+//   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+// });
