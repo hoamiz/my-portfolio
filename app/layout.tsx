@@ -5,17 +5,14 @@ import { ReactNode } from "react";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "Portfolio – Sơn Lê",
-  description: "Full-stack Developer – Next.js | React | Node.js",
-  icons: {
-    icon: "/icon.png",
-    shortcut: "/favicon.ico",
-  },
+  title: "Sơn Lê — Portfolio & Blog",
+  description: "Personal website, blogs, projects and tutorials by Sơn Lê.",
+  keywords: ["Sơn Lê", "Portfolio", "Blog", "Next.js", "Frontend"],
   openGraph: {
-    title: "Portfolio – Sơn Lê",
-    description: "Full-stack Developer – Next.js | React | Node.js",
-    url: "http://localhost:3000/",
-    siteName: "Son Le Portfolio",
+    title: "Sơn Lê — Portfolio & Blog",
+    description: "Personal website, blogs, and projects.",
+    url: "https://yourdomain.com",
+    siteName: "Sơn Lê Portfolio",
     images: [
       {
         url: "/og-image.png",
@@ -23,9 +20,13 @@ export const metadata = {
         height: 630,
       },
     ],
-    type: "website",
+  },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
   },
 };
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html>
