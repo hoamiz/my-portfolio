@@ -1,7 +1,6 @@
 import Counter from "@/components/Counter";
 import ScreenInfo from "@/components/ScreenInfo";
 import Timer from "@/components/Timer";
-import ToggleThemeButton from "@/components/buttons/ToggleThemeButton";
 
 export default function Page() {
   return (
@@ -9,7 +8,6 @@ export default function Page() {
       <Counter />
       <Timer />
       <ScreenInfo />
-      {/* <ToggleThemeButton /> */}
     </main>
   );
 }
