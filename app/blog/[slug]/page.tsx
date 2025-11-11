@@ -3,6 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import Comments from "./Comments";
 
 // Generate static routes
 export function generateStaticParams() {
@@ -49,6 +51,14 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             <h1>{data.title}</h1>
             <p className="text-sm text-gray-500 mb-6">{data.date}</p>
             <div>{content}</div>
+            <Suspense fallback={
+                <div className="mt-6 space-y-2 animate-pulse">
+                    <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded" />
+                    <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
+                    <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-2/3" />
+                </div>}>
+                <Comments />
+            </Suspense>
         </article>
     );
 }
