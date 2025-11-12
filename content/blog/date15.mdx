@@ -1,0 +1,52 @@
+---
+title: "Notes Ngày 15"
+date: "2025-11-13"
+description: "Bài viết đầu tiên trên blog của tôi"
+---
+
+# Notes Ngày 15
+
+## 1️⃣ Suspense + lazy (Client Component)
+
+- Dùng `React.Suspense` + `dynamic` (Next.js) để lazy-load component client.
+- Ví dụ: Counter component lazy load với fallback "Loading counter..."
+- Suspense client chỉ áp dụng cho component `"use client"`.
+
+## 2️⃣ Suspense trong Server Components
+
+- Server Components tự stream HTML → không cần Suspense fallback trực tiếp.
+- Client Component bên trong Server Component vẫn có thể dùng Suspense fallback.
+
+## 3️⃣ Streaming SSR (Server-Side Rendering)
+
+- Next.js App Router hỗ trợ streaming HTML khi Server Component async.
+- Cách làm: `await` fetch data trong async component.
+- Fallback loading + Skeleton UI cải thiện UX khi dữ liệu đang fetch.
+
+## 4️⃣ Prefetch API
+
+- Sử dụng `fetch(url, { cache: 'force-cache' })` để preload dữ liệu trước khi page render.
+- Trong demo: `getPostsSlow()` fetch 5 bài viết từ JSONPlaceholder với delay giả lập.
+
+## 5️⃣ Demo code nhỏ – Blog page + Skeleton comment
+
+- Page `app/blog/page.tsx` load bài viết + skeleton comment.
+- Skeleton UI: `animate-pulse` + div giả lập heading/body/comment.
+- Suspense wrap async component để hiển thị fallback khi loading.
+- JSONPlaceholder `_limit=5` làm dữ liệu demo.
+- Có thể mở rộng thành blog thực thụ khi dùng API thật.
+
+## 6️⃣ MDX Notes (Optional)
+
+- Next.js 15 App Router:
+  - Dùng `@next/mdx` để đọc file `.mdx`.
+  - Không dùng `next-mdx-remote` nữa (không tương thích Turbopack).
+  - `@mdx-js/react` để custom components trong MDX.
+- Ví dụ: import component vào MDX để render `<Button />`, `<Chart />`, etc.
+
+## ✅ Key Takeaways
+
+- Suspense + Skeleton UI giúp UX mượt.
+- Streaming SSR + prefetch API làm page load nhanh và SEO friendly.
+- MDX giờ đã hỗ trợ native trong Next.js 15, không cần loader Webpack cũ.
+- Async Server Component + client Suspense phối hợp tốt cho blog/demo page.

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Comments from "./Comments";
+import LazyComments from "@/components/LazyComments";
 
 // Generate static routes
 export function generateStaticParams() {
@@ -58,6 +59,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                     <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-2/3" />
                 </div>}>
                 <Comments />
+                <LazyComments />
             </Suspense>
         </article>
     );
