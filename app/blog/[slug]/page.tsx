@@ -16,13 +16,21 @@ export function generateStaticParams() {
         slug: file.replace(/\.mdx$/, "")
     }));
 }
+export const revalidate = 10; // ISR: refresh page sau 60s
 
+async function getPost(slug: string) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`, {
+        next: { revalidate: 60 },
+    });
+    return res.json();
+}
 // Generate SEO from MDX frontmatter
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
     const filePath = path.join(process.cwd(), "content/blog", `${params.slug}.mdx`);
     if (!fs.existsSync(filePath)) return {};
 
-    const { data } = matter(fs.readFileSync(filePath, "utf-8"));
+    let { data } = matter(fs.readFileSync(filePath, "utf-8"));
+    if (!data) data = await getPost(params.slug);
     return {
         title: data.title,
         description: data.description,

@@ -13,9 +13,18 @@ export type PostMeta = {
   id?: string;
   body?: string;
 };
+export const revalidate = 60; // ISR: cập nhật sau 60s
+
+async function getPosts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
+    next: { revalidate: 60 },
+  });
+  return res.json();
+}
 
 export default async function BlogPage() {
   const postsFetch = await getPostsSlow();
+  const postsAPIFetch = await getPosts();
   const postsDir = path.join(process.cwd(), "content/blog");
   const files = fs.readdirSync(postsDir);
   console.log('xxxx-postsFetch', postsFetch);
@@ -49,6 +58,21 @@ export default async function BlogPage() {
             </div>
           </Link>
         ))}
+        <main className="p-8 space-y-6">
+          <h1 className="text-3xl font-bold mb-4">📰 Blog</h1>
+          <ul className="space-y-3">
+            {postsAPIFetch.map((post: any) => (
+              <li key={post.slug}>
+                <a
+                  href={`/blog/${post.slug}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {post.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </main>
       </Suspense>
     </div>
   );
