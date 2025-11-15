@@ -1,18 +1,25 @@
 import { NextResponse } from "next/server";
-
-const posts = [
-  {
-    slug: "learn-nextjs",
-    title: "Học Next.js cơ bản",
-    content: "Next.js giúp xây dựng web app nhanh, mạnh và tối ưu SEO.",
-  },
-  {
-    slug: "nextjs-isr",
-    title: "Tìm hiểu Incremental Static Regeneration",
-    content: "ISR cho phép cập nhật trang tĩnh mà không cần deploy lại.",
-  },
-];
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
+  const posts = await prisma.post.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+
   return NextResponse.json(posts);
+}
+
+export async function POST(req: Request) {
+  const body = await req.json();
+
+  const newPost = await prisma.post.create({
+    data: {
+      title: body.title,
+      slug: body.slug,
+      content: body.content,
+      authorId: body.authorId ?? null,
+    },
+  });
+
+  return NextResponse.json(newPost);
 }
