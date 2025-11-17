@@ -1,6 +1,10 @@
-import { PostMeta } from "@/app/blog/page";
-
 // lib/getPostsSlow.ts
+type PostMeta = {
+  id: number;
+  title: string;
+  body: string;
+};
+
 export async function getPostsSlow() {
   // simulate slow network (2s)
   await new Promise((r) => setTimeout(r, 2000));
