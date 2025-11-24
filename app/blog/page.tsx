@@ -13,16 +13,16 @@ export default async function BlogPage() {
       </div>
 
       {posts.map(post => (
-        <a
-          key={post.id}
+        <div key={post.id} className="block p-4   hover:rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer"
+        ><a
           href={`/blog/${post.slug}`}
-          className="block p-4   hover:rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer"
         >
-          <h2 className="text-xl font-semibold">{post.title}</h2>
-          <p className="text-sm font-semibold text-gray-400">
-            {new Date(post.createdAt).toLocaleDateString()}
-          </p>
-        </a>
+            <h2 className="text-xl font-semibold">{post.title}</h2>
+            <p className="text-sm font-semibold text-gray-400">
+              {new Date(post.createdAt).toLocaleDateString()}
+            </p>
+          </a>
+        </div>
       ))}
     </div>
   );
