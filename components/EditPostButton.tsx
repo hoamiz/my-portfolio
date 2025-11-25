@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { updatePost } from "@/app/blog/actions";
 
 export type Post = {
-    id?: string;
+    id?: number;
     title: string;
     content: string;
     slug: string;
@@ -18,10 +18,12 @@ export default function EditPostButton({ post }: { post: Post }) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [slug, setSlug] = useState('');
+    const [id, setId] = useState<number | undefined>(undefined);
     useEffect(() => {
         setTitle(post.title);
         setContent(post.content);
         setSlug(post.slug);
+        setId(post.id ? Number(post.id) : undefined);
     }, [post]);
     if (!post) return null; // hoặc skeleton
 
@@ -36,7 +38,7 @@ export default function EditPostButton({ post }: { post: Post }) {
                 </DialogHeader>
                 <form
                     action={async (post) => {
-                        await updatePost(post);
+                        await updatePost(post, id as number);
                         setOpen(false)
                     }}
                     className="space-y-4"

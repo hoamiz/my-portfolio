@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPost } from "@/lib/posts";
 import Comments from "./Comments";
 import EditPostButton from "@/components/EditPostButton";
+import DeletePostButton from "@/components/DeletePostButton";
 export const revalidate = 60;
 
 interface Props {
@@ -17,6 +18,7 @@ export default async function BlogDetailPage({ params }: Props) {
     return (
         <article className="max-w-3xl mx-auto py-12">
             <EditPostButton post={post} />
+            <DeletePostButton post={post} />
             <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
             <p className="text-gray-500 text-sm mb-4">
                 {new Date(post.createdAt).toLocaleDateString()}
