@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
+import { SessionProviderWrapper } from "@/components/SessionProviderWrapper";
 
 export const metadata = {
   title: "Sơn Lê — Portfolio & Blog",
@@ -32,7 +33,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html>
       <body>
         <Header />
-        {children}
+        <SessionProviderWrapper>
+          {children}
+        </SessionProviderWrapper>
         <Toaster richColors closeButton />
         <Footer />
       </body>

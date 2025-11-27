@@ -11,7 +11,13 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
-  session: { strategy: "jwt" }
+  session: { strategy: "jwt" },
+  callbacks: {
+  async redirect({ url, baseUrl }) {
+    return "/"; // hoặc "/" tùy bạn
+  }
+}
+
 });
 
 export { handler as GET, handler as POST };
