@@ -11,7 +11,10 @@ export default async function BlogPage() {
         <h1 className="text-3xl font-bold">Blog</h1>
         <AddPostButton />
       </div>
-
+      {posts.length === 0 &&
+        <div className="text-xl text-gray-500 dark:text-gray-400">
+          Chưa có bài viết nào.
+        </div>}
       {posts.map(post => (
         <div key={post.id} className="block p-4   hover:rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer"
         ><a

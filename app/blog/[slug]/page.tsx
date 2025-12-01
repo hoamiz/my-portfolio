@@ -17,8 +17,10 @@ export default async function BlogDetailPage({ params }: Props) {
     }
     return (
         <article className="max-w-3xl mx-auto py-12">
-            <EditPostButton post={post} />
-            <DeletePostButton post={post} />
+            <div className="flex gap-2 mb-6">
+                <EditPostButton post={post} />
+                <DeletePostButton post={post} />
+            </div>
             <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
             <p className="text-gray-500 text-sm mb-4">
                 {new Date(post.createdAt).toLocaleDateString()}

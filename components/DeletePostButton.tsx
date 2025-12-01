@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
-import { deletePost, updatePost } from "@/app/blog/actions";
+import { deletePost } from "@/app/blog/actions";
 
 export type Post = {
     id?: number;
@@ -29,7 +29,7 @@ export default function DeletePostButton({ post }: { post: Post }) {
     }
     return (
         <Dialog open={isDelete} onOpenChange={setIsDelete}>
-            <DialogTrigger className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+            <DialogTrigger className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-900 transition-colors cursor-pointer">
                 Delete Post
             </DialogTrigger>
             <DialogContent >

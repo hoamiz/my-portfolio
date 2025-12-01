@@ -8,6 +8,13 @@ export async function createPost(dataForm: FormData) {
   const title = dataForm.get('title') as string;
   const content = dataForm.get('content') as string;
   const slug = dataForm.get('slug') as string;
+  if (!title || !slug || !content) {
+    throw new Error("Missing fields");
+  }
+
+  if (slug.includes(" ")) {
+    throw new Error("Slug cannot contain spaces");
+  }
   await prisma.post.create({
     data: {
       title,
@@ -23,7 +30,16 @@ export async function updatePost(dataForm: FormData, id: number) {
   const content = dataForm.get("content") as string;
   const slug = dataForm.get("slug") as string;
 
+  if (!title || !slug || !content) {
+    throw new Error("Missing fields");
+  }
+
+  if (slug.includes(" ")) {
+    throw new Error("Slug cannot contain spaces");
+  }
+
   if (!id) throw new Error("Missing post id");
+
   await prisma.post.update({
     where: { id },
     data: {
@@ -32,8 +48,10 @@ export async function updatePost(dataForm: FormData, id: number) {
       slug,
     },
   });
+
   revalidatePath("/blog");
 }
+
 export async function deletePost(id: number) {
   if (!id) throw new Error("Missing post id");
   await prisma.post.delete({
