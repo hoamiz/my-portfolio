@@ -42,3 +42,9 @@ next-env.d.ts
 
 .env.local
 /app/generated/prisma
+
+# local SQLite export; not for commit
+/prisma/sqlite-export/
+
+.vercel
+.env*

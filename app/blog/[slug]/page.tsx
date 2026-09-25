@@ -6,11 +6,12 @@ import DeletePostButton from "@/components/DeletePostButton";
 export const revalidate = 60;
 
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 export default async function BlogDetailPage({ params }: Props) {
-    const post = await getPost(params.slug);
+    const { slug } = await params;
+    const post = await getPost(slug);
 
     if (!post) {
         notFound();
