@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 
 export default function ProjectPage({ params }: { params: { id?: string[] } }) {
     if (!params.id) return <p>📁 Danh sách project</p>;

@@ -93,7 +93,7 @@ export default function AboutPage() {
         <h2 className="text-2xl font-semibold mb-3">Education</h2>
         <p className="opacity-80 leading-relaxed">
           <span className="font-semibold">University of Information and Technology (UIT)</span> —
-          Bachelor's Degree in Computer Network & Communication (2015–2020)
+          Bachelor&apos;s Degree in Computer Network & Communication (2015–2020)
         </p>
       </div>
 

@@ -17,7 +17,7 @@ export default function HomePage() {
         className="max-w-3xl"
       >
         <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-          Hi, I'm <span className="text-blue-600">Sơn Lê</span>.
+          Hi, I&apos;m <span className="text-blue-600">Sơn Lê</span>.
         </h1>
 
         <p className="mt-5 text-gray-600 dark:text-gray-300 text-xl leading-relaxed">

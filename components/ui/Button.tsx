@@ -18,11 +18,11 @@ export default function Button({ children, onClick, variant = "primary", color =
     };
 
     const styles =
-        color && colorClasses[color]
-            ? colorClasses[color]
-            : variant === "primary"
-                ? "bg-blue-500 text-white hover:bg-blue-700"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300";
+        variant === "secondary"
+            ? "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            : color && colorClasses[color]
+                ? colorClasses[color]
+                : "bg-blue-500 text-white hover:bg-blue-700";
     return (
         <button onClick={onClick} className={`${base} ${styles}`}>
             {children}

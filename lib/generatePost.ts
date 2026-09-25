@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export function generateRandomPost(authorId?: number) {
+export function generateRandomPost(authorId?: string) {
   const title = faker.lorem.sentence(6);
   const slug = faker.helpers.slugify(title).toLowerCase();
 
